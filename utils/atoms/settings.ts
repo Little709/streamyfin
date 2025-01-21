@@ -74,10 +74,11 @@ export enum DownloadMethod {
 }
 
 export type Home = {
-  sections: [Object];
+  sections: Array<HomeSection>;
 };
 
 export type HomeSection = {
+  title: string;
   orientation?: "horizontal" | "vertical";
   items?: HomeSectionItemResolver;
   nextUp?: HomeSectionNextUpResolver;
