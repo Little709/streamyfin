@@ -80,6 +80,7 @@ interface Props {
   mediaSource?: MediaSourceInfo | null;
   seek: (ticks: number) => void;
   startPictureInPicture: () => Promise<void>;
+  startDiscovery: () => Promise<void>;
   play: (() => Promise<void>) | (() => void);
   pause: () => void;
   getAudioTracks?: (() => Promise<TrackInfo[] | null>) | (() => TrackInfo[]);
@@ -96,6 +97,7 @@ const CONTROLS_TIMEOUT = 4000;
 export const Controls: React.FC<Props> = ({
   item,
   seek,
+  startDiscovery,
   startPictureInPicture,
   play,
   pause,
@@ -555,6 +557,17 @@ export const Controls: React.FC<Props> = ({
             )}
 
             <View className="flex flex-row items-center space-x-2 ">
+              <TouchableOpacity
+                onPress={startDiscovery}
+                className="aspect-square flex flex-col rounded-xl items-center justify-center p-2"
+              >
+                <MaterialIcons
+                  name="cast"
+                  size={24}
+                  color="white"
+                  style={{ opacity: showControls ? 1 : 0 }}
+                />
+              </TouchableOpacity>
               {!Platform.isTV && (
                 <TouchableOpacity
                   onPress={startPictureInPicture}
